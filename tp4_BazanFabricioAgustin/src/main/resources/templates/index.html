@@ -1,17 +1,25 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="https://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<link rel="stylesheet" href="../static/css/estilos.css">
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Inicio</title>
-		<link th:rel="stylesheet" th:href="@{webjars/bootstrap/css/bootstrap.min.css}">
+		<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	</head>
 	<body>
-		<script type="text/javascript" th:src="@{webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
-		<div class="encabezado">
-			<header class="encabezado-header">
+		<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	
+		<div class="container text-center">
+			 <header class="container-fluid aling-items-start">
+			 <img alt="" src="https://www.fi.unju.edu.ar/images/LOGOS-FI-UNJU/logo-fi-unju-institucional-285x159.png">
+			 <div class="row">
+			 	<h1 class="col">Facultad de Ingeniería de Jujuy</h1>
+				<h2 class="col">Universidad Nacional de Jujuy: "Enciende tu antorcha en este fuego"</h2>
+			 </div>
 			</header>
 		</div>
+		
+		
+		
 	</body>
 </html>
