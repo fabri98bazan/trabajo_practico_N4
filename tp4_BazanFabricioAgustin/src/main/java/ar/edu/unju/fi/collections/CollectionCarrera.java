@@ -3,6 +3,8 @@ package ar.edu.unju.fi.collections;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 import org.springframework.stereotype.Component;
 
@@ -32,6 +34,16 @@ public class CollectionCarrera {
 	}
 	
 	/**
+	 * Mostrar carreras 
+	 */
+	public static void mostrarCarreras() {
+		if(!carreras.isEmpty())
+		{
+			carreras.forEach(c->System.out.println(c));
+		}else
+			System.out.println("LA LISTA ESTÁ VACIA");
+	}
+	/**
 	 * 
 	 * @param codCarrera
 	 * 
@@ -41,7 +53,7 @@ public class CollectionCarrera {
 		Iterator<Carrera> iterator=carreras.iterator();
 		while(iterator.hasNext()) {
 			if(iterator.next().getCod_carrera()==codCarrera) {
-				
+				iterator.remove();
 			}
 		}
 	}
@@ -58,9 +70,28 @@ public class CollectionCarrera {
 				c.setNombre_carrera(carrera.getNombre_carrera());
 				c.setCant_anios(carrera.getCant_anios());
 				c.setEstado(carrera.isEstado());
+			}else {
+				System.out.println("No se encuentra el codigo de la carrera");
 			}
 		}
 	}
+	
+	/**
+	 * Buscar un objeto carrera, con el priterio de @param
+	 * @return
+	 */
+	
+	public static Carrera buscarCarrera(int cod)
+	{
+		Predicate<Carrera> filterCod=c->c.getCod_carrera()==cod;
+		Optional<Carrera> carrera=carreras.stream().filter(filterCod).findFirst();
+		if(carrera.isPresent()) {
+			return carrera.get();
+		}else {
+			return null;
+		}
+	}
+	
 	
 	
 }

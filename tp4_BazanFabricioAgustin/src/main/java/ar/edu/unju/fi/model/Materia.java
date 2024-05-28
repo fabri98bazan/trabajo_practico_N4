@@ -1,6 +1,8 @@
 package ar.edu.unju.fi.model;
 
+import org.springframework.stereotype.Component;
 
+@Component
 public class Materia {
 	private int cod;
 	private String nombre_materia;
