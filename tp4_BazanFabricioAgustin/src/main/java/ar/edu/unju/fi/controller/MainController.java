@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MainController {
 
-	@GetMapping("/index")
+	@GetMapping("/inicio")
 	public String getIndexPage(Model model) {
 		model.addAttribute("titulo","Inicio");
 		return "index";
 	}
+	
 }
