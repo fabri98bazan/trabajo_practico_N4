@@ -14,6 +14,20 @@ public class Materia {
 	public Materia() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public Materia(int cod, String nombre_materia, int cant_horas, boolean modalidad, Docente docente,
+			Carrera carrera) {
+		this.cod = cod;
+		this.nombre_materia = nombre_materia;
+		this.cant_horas = cant_horas;
+		this.modalidad = modalidad;
+		this.docente = docente;
+		this.carrera = carrera;
+	}
+
+
 
 	public int getCod() {
 		return cod;
