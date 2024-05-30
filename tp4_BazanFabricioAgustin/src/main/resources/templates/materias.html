@@ -4,7 +4,42 @@
 	<body>
 	<div class="container-fluid">
 		<header data-th-replace="~{/layouts/header :: header}"></header>
-		
+		<div class="row">
+				<div class="col col-sm-12 fondo-form p-5">
+					<div class="row mb-5">
+						<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
+							<a class="btn btn-primary" data-th-href="@{/materia/nuevo}">Agregar nueva Materia</a>
+						</div>
+						<table class="table table-striped table-hover">
+							<tr>
+								<th>Código</th>
+								<th>Nombre de Materia</th>
+								<th>Duracion</th>
+								<th>Modalidad</th>
+								<th>Docente</th>
+								<th>Carrera</th>
+								<th>Opciones</th>
+							</tr>
+							
+							<tr data-th-each="mate: ${materias}">
+								<td data-th-text="${mate.cod}"></td>
+								<td data-th-text="${mate.nombre_materia}"></td>
+								<td data-th-text="${mate.cant_horas}+' horas '"></td>
+								<td>
+									<span th:if="${mate.modalidad}">Precencial</span>
+									<span th:if="${!mate.modalidad}">Virtual</span>
+								</td>
+								<td data-th-text="${mate.docente.nombre_docente}+' '+${mate.docente.apellido_docente}"></td>
+								<td data-th-text="${mate.carrera.nombre_carrera}"></td>
+								<td>
+									<a class="btn btn-warning" data-th-href="@{/materia/modificar/}+${mate.cod}">Editar</a>
+									<a class="btn btn-danger" data-th-href="@{/materia/eliminar/}+${mate.cod}">Eliminar</a>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
 	</div>
 	<footer data-th-replace="~{/layouts/footer :: footer}"></footer>
 	<script type="text/javascript" data-th-src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}" ></script>
