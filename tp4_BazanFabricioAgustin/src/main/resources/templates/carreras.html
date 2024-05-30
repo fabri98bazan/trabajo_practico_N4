@@ -9,8 +9,31 @@
 				<div class="col col-sm-12 fondo-form p-5">
 					<div class="row mb-5">
 						<div class="d-grid gap-2 d-md-flex justify-content-md-end mb-2">
-							<a class="btn btn-primary" data-th-href="@{/carrera/nuevo}">Boton</a>
+							<a class="btn btn-primary" data-th-href="@{/carrera/nuevo}">Agregar nueva Carrera</a>
 						</div>
+						<table class="table table-striped table-hover">
+							<tr>
+								<th>Código</th>
+								<th>Nombre</th>
+								<th>Duracion</th>
+								<th>Estado</th>
+								<th>Opciones</th>
+							</tr>
+							
+							<tr data-th-each="carre: ${carreras}">
+								<td data-th-text="${carre.cod_carrera}"></td>
+								<td data-th-text="${carre.nombre_carrera}"></td>
+								<td data-th-text="${carre.cant_anios}+' años '"></td>
+								<td>
+									<span th:if="${carre.estado}">Activa</span>
+									<span th:if="${!carre.estado}">Inactiva</span>
+								</td>
+								<td>
+									<a class="btn btn-warning" data-th-href="@{/carrera/modificar/}+${carre.cod_carrera}">Editar</a>
+									<a class="btn btn-danger" data-th-href="@{/carrera/eliminar/}+${carre.cod_carrera}">Eliminar</a>
+								</td>
+							</tr>
+						</table>
 					</div>
 				</div>
 			</div>
