@@ -26,5 +26,46 @@ public class MateriaController {
 		return "materias";
 	}
 	
+	@GetMapping("/nuevo")
+	public String getNuevaMateriaPage(Model model) {
+		boolean edicion=false;
+		model.addAttribute("materia", materia);
+		model.addAttribute("edicion", edicion);
+		model.addAttribute("titulo", "Nueva materia");
+		return "materia";
+	}
+	
+	@PostMapping("/guardar")
+	public ModelAndView guardarMateria(@ModelAttribute("materia") Materia materia) {
+		ModelAndView modelView=new ModelAndView("materias");
+		materia.setModalidad(true);
+		CollectionMateria.agregarMateria(materia);
+		modelView.addObject("materias",CollectionMateria.getMaterias());
+		return modelView;
+	}
+	
+	@GetMapping("/modificar/{cod}")
+	public String getModificarMateriaPage(Model model, @PathVariable(value="cod") int codigo) {
+		Materia materiaEncontrada= new Materia();
+		boolean edicion=true;
+		materiaEncontrada=CollectionMateria.buscarMaterias(codigo);
+		model.addAttribute("edicion", edicion);
+		model.addAttribute("materia", materiaEncontrada);
+		model.addAttribute("titulo","Modificar Materia");
+		return "materia";
+	}
+	
+	@PostMapping("/modificar")
+	public String modificarMateria(@ModelAttribute("materia") Materia materia) {
+		CollectionMateria.modificarMateria(materia);
+		return "redirect:/materia/listado";
+	}
+	
+	@GetMapping("/eliminar/{cod}")
+	public String eliminarCarrera(@PathVariable(value="cod") int codigo) {
+		CollectionMateria.eliminarMateria(codigo);
+		return "redirect:/materia/listado";
+	}
+	
 	
 }
