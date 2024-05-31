@@ -63,7 +63,7 @@ public class DocenteController {
 	}
 	
 	@GetMapping("/eliminar/{legajo}")
-	public String eliminarCarrera(@PathVariable(value="legajo") int leg) {
+	public String eliminarDocente(@PathVariable(value="legajo") int leg) {
 		CollectionDocente.eliminarDocente(leg);
 		return "redirect:/docente/listado";
 	}

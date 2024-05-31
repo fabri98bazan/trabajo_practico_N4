@@ -62,7 +62,7 @@ public class MateriaController {
 	}
 	
 	@GetMapping("/eliminar/{cod}")
-	public String eliminarCarrera(@PathVariable(value="cod") int codigo) {
+	public String eliminarMateria(@PathVariable(value="cod") int codigo) {
 		CollectionMateria.eliminarMateria(codigo);
 		return "redirect:/materia/listado";
 	}

@@ -61,7 +61,7 @@ public class AlumnoController {
 	}
 	
 	@GetMapping("/eliminar/{LU}")
-	public String eliminarCarrera(@PathVariable(value="LU") int lu) {
+	public String eliminarAlumno(@PathVariable(value="LU") int lu) {
 		CollectionAlumno.eliminarAlumno(lu);
 		return "redirect:/alumno/listado";
 	}
