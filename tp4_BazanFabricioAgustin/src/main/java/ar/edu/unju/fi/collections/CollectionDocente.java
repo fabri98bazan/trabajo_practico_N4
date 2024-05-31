@@ -14,7 +14,7 @@ import ar.edu.unju.fi.model.Docente;
 public class CollectionDocente {
 	private static List<Docente> docentes=new ArrayList<Docente>();
 	
-	public static List<Docente> getAlumnos(){
+	public static List<Docente> getDocentes(){
 		if(docentes.isEmpty()) {
 			docentes.add(new Docente(1, "Alejandro", "Vega", "vegaalejandro@gmail.com", 1125789321));
 			docentes.add(new Docente(2, "Carolina", "Apaza", "carolinaapaza@gmail.com", 1234567891));
