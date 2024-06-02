@@ -27,7 +27,7 @@ public class Alumno {
 		this.num_celular = num_celular;
 		this.fecha_nac = fecha_nac;
 		this.domicilio_alumno = domicilio_alumno;
-		LU = lU;
+		this.LU = lU;
 	}
 
 	public String getDni() {
