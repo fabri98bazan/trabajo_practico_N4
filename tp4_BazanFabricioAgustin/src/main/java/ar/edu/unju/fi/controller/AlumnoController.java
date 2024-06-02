@@ -29,7 +29,7 @@ public class AlumnoController {
 	@GetMapping("/nuevo")
 	public String getNuevoAlumnoPage(Model model) {
 		boolean edicion=false;
-		model.addAttribute("docente", alumno);
+		model.addAttribute("alumno", alumno);
 		model.addAttribute("edicion", edicion);
 		model.addAttribute("titulo", "Nuevo alumno");
 		return "alumno";
