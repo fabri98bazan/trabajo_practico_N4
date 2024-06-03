@@ -56,9 +56,10 @@ public class CarreraController {
 	}
 	
 	@PostMapping("/modificar")
-	public String modificarCarrera(@ModelAttribute("carrera") Carrera carrera) {
-		CollectionCarrera.modificarCarrera(carrera);
-		return "redirect:/carrera/listado";
+	public String modificarCarrera(@ModelAttribute("carrera") Carrera carrera, Model model) {
+		model.addAttribute("carreras", CollectionCarrera.getCarreras());
+		model.addAttribute("titulo","Carreras");
+		return "carreras";
 	}
 	
 	@GetMapping("/eliminar/{cod_carrera}")
