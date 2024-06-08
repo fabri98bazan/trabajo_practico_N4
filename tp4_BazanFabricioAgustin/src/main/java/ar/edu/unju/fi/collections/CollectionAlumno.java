@@ -30,8 +30,8 @@ private static List<Alumno> alumnos=new ArrayList<Alumno>();
 	 * 
 	 * Para agregar una nuevo alumno
 	 */
-	public static void agregarAlumno(Alumno alumno) {
-		alumnos.add(alumno);
+	public static boolean agregarAlumno(Alumno alumno) {
+		return alumnos.add(alumno) ? true: false;
 	}
 	
 	/**
@@ -63,23 +63,33 @@ private static List<Alumno> alumnos=new ArrayList<Alumno>();
 	 * Para modificar un Alumno
 	 * @param alumno
 	 */
-	public static void modificarAlumno(Alumno alumno) {
-		for(Alumno a: alumnos)
-		{
-			if(a.getLU()==alumno.getLU())
+	public static void modificarAlumno(Alumno alumno)throws Exception{
+		boolean encontrado=false;
+		try {
+			for(Alumno a: alumnos)
 			{
-				a.setApellido_alumno(alumno.getApellido_alumno());
-				a.setNombre_alumno(alumno.getNombre_alumno());
-				a.setEmail_alumno(alumno.getEmail_alumno());
-				a.setFecha_nac(alumno.getFecha_nac());
-				a.setDni(alumno.getDni());
-				a.setDomicilio_alumno(alumno.getDomicilio_alumno());
-				a.setNum_celular(alumno.getNum_celular());
+				if(a.getLU()==alumno.getLU())
+				{
+					a.setApellido_alumno(alumno.getApellido_alumno());
+					a.setNombre_alumno(alumno.getNombre_alumno());
+					a.setEmail_alumno(alumno.getEmail_alumno());
+					a.setFecha_nac(alumno.getFecha_nac());
+					a.setDni(alumno.getDni());
+					a.setDomicilio_alumno(alumno.getDomicilio_alumno());
+					a.setNum_celular(alumno.getNum_celular());
+					encontrado=true;
 
-			}else {
-				System.out.println("No se encuentra el codigo de la alumno");
+				}
+			}
+			if(!encontrado) {
+				throw new Exception("La materia con  código: "+alumno.getLU()+" no existe");
 			}
 		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+			throw e;
+		}
+		
 	}
 	
 	/**

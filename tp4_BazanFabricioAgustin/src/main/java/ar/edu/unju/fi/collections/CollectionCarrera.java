@@ -29,8 +29,8 @@ public class CollectionCarrera {
 	 * 
 	 * Para agregar una nueva carrera
 	 */
-	public static void agregarCarrera(Carrera carrera) {
-		carreras.add(carrera);
+	public static boolean agregarCarrera(Carrera carrera) {
+		return carreras.add(carrera) ? true: false;
 	}
 	
 	/**
