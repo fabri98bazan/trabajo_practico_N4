@@ -28,8 +28,8 @@ public class CollectionMateria {
 	 * Para agregar Materia
 	 * @param materia
 	 */
-	public static void agregarMateria(Materia materia) {
-		materias.add(materia);
+	public static boolean agregarMateria(Materia materia) {
+		return materias.add(materia) ? true: false;
 	}
 	
 	
@@ -61,18 +61,26 @@ public class CollectionMateria {
 	 * Para modificar los datos del objeto Materia
 	 * @param materia
 	 */
-	public static void modificarMateria(Materia materia) {
-		for(Materia m:materias) {
-			if(m.getCod()==materia.getCod())
-			{
-				m.setNombre_materia(materia.getNombre_materia());
-				m.setModalidad(materia.isModalidad());
-				m.setDocente(materia.getDocente());
-				m.setCarrera(materia.getCarrera());
-				m.setCant_horas(materia.getCant_horas());
-			}else {
-				System.out.println("No se encuentra el codigo de la materia");
+	public static void modificarMateria(Materia materia)throws Exception {
+		boolean encontrado=false;
+		try {
+			for(Materia m:materias) {
+				if(m.getCod()==materia.getCod())
+				{
+					m.setNombre_materia(materia.getNombre_materia());
+					m.setModalidad(materia.isModalidad());
+					m.setDocente(materia.getDocente());
+					m.setCarrera(materia.getCarrera());
+					m.setCant_horas(materia.getCant_horas());
+					encontrado=true;
+				}
 			}
+			if(!encontrado) {
+				throw new Exception("La materia con  código: "+materia.getCod()+" no existe");
+			}
+		}catch(Exception e){
+			System.out.println(e.getMessage());
+			throw e;
 		}
 	}
 	/**

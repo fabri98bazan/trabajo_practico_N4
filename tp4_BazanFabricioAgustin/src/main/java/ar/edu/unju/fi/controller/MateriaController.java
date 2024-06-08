@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import ar.edu.unju.fi.collections.CollectionMateria;
 import ar.edu.unju.fi.model.Materia;
 
@@ -38,9 +39,18 @@ public class MateriaController {
 	@PostMapping("/guardar")
 	public ModelAndView guardarMateria(@ModelAttribute("materia") Materia materia) {
 		ModelAndView modelView=new ModelAndView("materias");
+		String mensaje;
 		materia.setModalidad(true);
-		CollectionMateria.agregarMateria(materia);
-		modelView.addObject("materias",CollectionMateria.getMaterias());
+		boolean exito=CollectionMateria.agregarMateria(materia);
+		if(exito)
+		{
+			mensaje="Materia guardada con exito!";
+		}else {
+			mensaje="Materia no se pudo guardar";
+		}
+		modelView.addObject("exito", exito);
+		modelView.addObject("mensaje", mensaje);
+		modelView.addObject("carreras",CollectionMateria.getMaterias());
 		return modelView;
 	}
 	
@@ -56,15 +66,28 @@ public class MateriaController {
 	}
 	
 	@PostMapping("/modificar")
-	public String modificarMateria(@ModelAttribute("materia") Materia materia) {
-		CollectionMateria.modificarMateria(materia);
-		return "redirect:/materia/listado";
+	public String modificarMateria(@ModelAttribute("materia") Materia materia, Model model) {
+		boolean exito=false;
+		String mensaje="";
+		try {
+			CollectionMateria.modificarMateria(materia);
+			mensaje="La materia con codigo "+materia.getCod()+" fue modificada";
+			exito=true;
+		}catch(Exception e) {
+			mensaje=e.getMessage();
+			e.printStackTrace();
+		}
+		model.addAttribute("exito", exito);
+		model.addAttribute("mensaje",mensaje);
+		model.addAttribute("materias", CollectionMateria.getMaterias());
+		model.addAttribute("titulo","Materias");
+		return "materias";
 	}
 	
 	@GetMapping("/eliminar/{cod}")
 	public String eliminarMateria(@PathVariable(value="cod") int codigo) {
-		CollectionMateria.eliminarMateria(codigo);
-		return "redirect:/materia/listado";
+            CollectionMateria.eliminarMateria(codigo);
+            return "redirect:/materia/listado";
 	}
 	
 	

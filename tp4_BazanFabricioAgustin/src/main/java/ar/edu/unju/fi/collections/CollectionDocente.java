@@ -27,8 +27,8 @@ public class CollectionDocente {
 	 * 
 	 * Para agregar docente @param docente
 	 */
-	public static void agregarDocente(Docente docente) {
-		docentes.add(docente);
+	public static boolean agregarDocente(Docente docente) {
+		return docentes.add(docente) ? true:false;
 	}
 	
 	/**
@@ -59,18 +59,25 @@ public class CollectionDocente {
 	 * @param docente
 	 */
 	
-	public static void modificarDocente(Docente docente) {
-		for(Docente d: docentes)
-		{
-			if(d.getLegajo()==docente.getLegajo())
+	public static void modificarDocente(Docente docente) throws Exception  {
+		boolean encontrado=true;
+		try {
+			for(Docente d: docentes)
 			{
-				d.setApellido_docente(docente.getApellido_docente());
-				d.setNombre_docente(docente.getNombre_docente());
-				d.setEmail_docente(docente.getEmail_docente());
-				d.setNum_telefono(docente.getNum_telefono());
-			}else {
-				System.out.println("No se encuentra el codigo del docente");
+				if(d.getLegajo()==docente.getLegajo())
+				{
+					d.setApellido_docente(docente.getApellido_docente());
+					d.setNombre_docente(docente.getNombre_docente());
+					d.setEmail_docente(docente.getEmail_docente());
+					d.setNum_telefono(docente.getNum_telefono());
+					encontrado=true;
+				}if(!encontrado) {
+					throw new Exception("La materia con  código: "+docente.getLegajo()+" no existe");
+				}
 			}
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			throw e;
 		}
 	}
 	/**
