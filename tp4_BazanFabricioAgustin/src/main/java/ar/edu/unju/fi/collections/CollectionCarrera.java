@@ -76,9 +76,9 @@ public class CollectionCarrera {
 					c.setEstado(carrera.isEstado());
 					encontrado=true;
 				}
-				if(!encontrado) {
-					throw new Exception("La carrera con  código: "+carrera.getCod_carrera()+" no existe");
-				}
+			}
+			if(!encontrado) {
+				throw new Exception("La carrera con  código: "+carrera.getCod_carrera()+" no existe");
 			}
 		}catch(Exception e){
 			System.out.println(e.getMessage());
