@@ -13,5 +13,5 @@ public interface ICarreraService {
 	
 	void deleteByCod_carrera(int cod_carrera);
 	
-	void edit(CarreraDTO carreraDTO);
+	void edit(CarreraDTO carreraDTO) throws Exception;
 }
